@@ -67,6 +67,7 @@ import org.apache.james.mailbox.store.mail.model.impl.Properties;
 import org.apache.james.mailbox.store.mail.model.impl.PropertyBuilder;
 import org.apache.openjpa.persistence.jdbc.ElementJoinColumn;
 import org.apache.openjpa.persistence.jdbc.ElementJoinColumns;
+import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.github.fge.lambdas.Throwing;
 import com.google.common.base.Objects;
@@ -164,6 +165,7 @@ public abstract class AbstractJPAMailboxMessage implements MailboxMessage {
     private long uid;
 
     /** The value for the modSeq field */
+    @Index
     @Column(name = "MAIL_MODSEQ")
     private long modSeq;
 
@@ -180,6 +182,7 @@ public abstract class AbstractJPAMailboxMessage implements MailboxMessage {
     /** The value for the deleted field */
     @Basic(optional = false)
     @Column(name = "MAIL_IS_DELETED", nullable = false)
+    @Index
     private boolean deleted = false;
 
     /** The value for the draft field */
@@ -195,11 +198,13 @@ public abstract class AbstractJPAMailboxMessage implements MailboxMessage {
     /** The value for the recent field */
     @Basic(optional = false)
     @Column(name = "MAIL_IS_RECENT", nullable = false)
+    @Index
     private boolean recent = false;
 
     /** The value for the seen field */
     @Basic(optional = false)
     @Column(name = "MAIL_IS_SEEN", nullable = false)
+    @Index
     private boolean seen = false;
 
     /** The first body octet */
